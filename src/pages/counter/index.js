@@ -6,7 +6,8 @@ class Counter extends PureComponent {
     render() {
         return (
             <div>
-                <div>当前计数为{this.props.count}</div>
+                <div>当前计数为{this.props.count},</div>
+                {console.log('props',this.props)}
                 <button onClick={() => this.props.increment()}>自增
                 </button>
                 <button onClick={() => this.props.decrement()}>自减
@@ -31,9 +32,11 @@ class Counter extends PureComponent {
 //     }
 // }))(Counter);
 
+//console.log('counter',counter)
 
+export default connect((state) => state, dispatch => ({
 
-export default connect(({counter}) => counter, dispatch => ({
+    
     increment: () => {
         dispatch(increment())
     },
@@ -45,3 +48,10 @@ export default connect(({counter}) => counter, dispatch => ({
     }
 }))(Counter);
 
+/* 
+connect是什么呢？react-redux提供了一个方法connect。connect主要有两个参数，
+一个mapStateToProps,就是把redux的state，转为组件的Props，
+还有一个参数是mapDispatchToprops,把发射actions的方法，转为Props属性函数。
+
+
+*/

@@ -1,6 +1,9 @@
-import {createStore} from 'redux';
+import {applyMiddleware,createStore} from 'redux'; 
 import {combineReducers} from "redux";
+import createLogger from 'redux-logger';
 import counter  from 'reducers/counter';
+
+console.log(`reducers:${counter}`)
 
 // let store = createStore(counter);
 /*
@@ -8,7 +11,13 @@ import counter  from 'reducers/counter';
 redux提供了一个combineReducers函数来合并reducer，
 使用起来非常简单。在store.js中引入combineReducers并使用它。
 */
+
+const logger = createLogger();
 let store = createStore(combineReducers({counter}));
+
+setInterval(() => {
+    console.log('getstroe',store.getState())
+}, 2000 )
 
 export default store;
 
